@@ -8,6 +8,10 @@
 # 检测 Ubuntu 版本
 DISTRO=$(lsb_release -cs)
 
+# 设置默认值
+STORAGE_ROOT=${STORAGE_ROOT:-/home/crypto-data}
+YiiMPRepo=${YiiMPRepo:-"https://github.com/cryptopool-builders/yiimp.git"}
+
 if [[ ! "$DISTRO" =~ ^(xenial|bionic|focal|jammy)$ ]]; then
     echo "不支持的 Ubuntu 版本: $DISTRO"
     echo "本脚本仅支持 Ubuntu 16.04 (xenial), 18.04 (bionic), 20.04 (focal) 和 22.04 (jammy)"
@@ -15,12 +19,14 @@ if [[ ! "$DISTRO" =~ ^(xenial|bionic|focal|jammy)$ ]]; then
 fi
 
 clear
-source /etc/functions.sh
-source $STORAGE_ROOT/yiimp/.yiimp.conf
-source $HOME/multipool/yiimp_single/.wireguard.install.cnf
 
-# 设置 YiiMP 仓库地址 - 移到 source 命令之后
-YiiMPRepo=${YiiMPRepo:-"https://github.com/cryptopool-builders/yiimp.git"}
+# 确保配置目录存在
+sudo mkdir -p /etc
+sudo mkdir -p $STORAGE_ROOT/yiimp
+
+source /etc/functions.sh
+[ -f $STORAGE_ROOT/yiimp/.yiimp.conf ] && source $STORAGE_ROOT/yiimp/.yiimp.conf
+source $HOME/multipool/yiimp_single/.wireguard.install.cnf
 
 # 设置严格模式,遇到错误立即退出
 set -eu -o pipefail
