@@ -9,6 +9,13 @@ source /etc/functions.sh
 source /etc/multipool.conf
 source $STORAGE_ROOT/yiimp/.yiimp.conf
 
+# 设置 PRIMARY_HOSTNAME
+PRIMARY_HOSTNAME=${PRIMARY_HOSTNAME:-$DomainName}
+if [ -z "$PRIMARY_HOSTNAME" ]; then
+    echo "错误: 未设置域名 (DomainName 或 PRIMARY_HOSTNAME)"
+    exit 1
+fi
+
 set -eu -o pipefail
 
 function print_error {

@@ -203,3 +203,23 @@ echo -e "$GREEN System files installed...$COL_RESET"
 
 set +eu +o pipefail
 cd $HOME/multipool/yiimp_single
+
+# 修改 hide_output 函数的使用方式
+- hide_output sudo apt-get update
++ # 使用函数包装命令执行
++ function run_with_temp_output {
++     local temp_file
++     temp_file=$(mktemp)
++     if "$@" > "$temp_file" 2>&1; then
++         rm -f "$temp_file"
++         return 0
++     else
++         local ret=$?
++         cat "$temp_file"
++         rm -f "$temp_file"
++         return $ret
++     fi
++ }
++ 
++ # 使用新函数替换所有 hide_output 调用
++ run_with_temp_output sudo apt-get update
