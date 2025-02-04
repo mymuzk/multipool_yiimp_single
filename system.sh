@@ -46,9 +46,9 @@ apt_install software-properties-common
 fi
 echo -e "$GREEN Done...$COL_RESET"
 
-# PHP 7
+# PHP 8.1
 echo -e " Installing Ondrej PHP PPA...$COL_RESET"
-if [ ! -f /etc/apt/sources.list.d/ondrej-php-bionic.list ]; then
+if [ ! -f /etc/apt/sources.list.d/ondrej-php-jammy.list ]; then
 hide_output sudo add-apt-repository -y ppa:ondrej/php
 fi
 echo -e "$GREEN Done...$COL_RESET"
@@ -140,12 +140,12 @@ fi
 hide_output sudo apt-get update
 
 if [[ ("$DISTRO" == "16") ]]; then
-apt_install php7.3-fpm php7.3-opcache php7.3-fpm php7.3 php7.3-common php7.3-gd \
-php7.3-mysql php7.3-imap php7.3-cli php7.3-cgi \
+apt_install php8.1-fpm php8.1-opcache php8.1 php8.1-common php8.1-gd \
+php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi \
 php-pear php-auth-sasl mcrypt imagemagick libruby \
-php7.3-curl php7.3-intl php7.3-pspell php7.3-recode php7.3-sqlite3 \
-php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache \
-php-imagick php-gettext php7.3-zip php7.3-mbstring \
+php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 \
+php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache \
+php-imagick php-gettext php8.1-zip php8.1-mbstring \
 fail2ban ntpdate python3 python3-dev python3-pip \
 curl git sudo coreutils pollinate unzip unattended-upgrades cron \
 pwgen libgmp3-dev libmysqlclient-dev libcurl4-gnutls-dev \
@@ -154,12 +154,12 @@ build-essential libtool autotools-dev automake pkg-config libevent-dev bsdmainut
 automake cmake gnupg2 ca-certificates lsb-release nginx certbot libsodium-dev \
 libnghttp2-dev librtmp-dev libssh2-1 libssh2-1-dev libldap2-dev libidn11-dev libpsl-dev libkrb5-dev
 else
-apt_install php7.3-fpm php7.3-opcache php7.3-fpm php7.3 php7.3-common php7.3-gd \
-php7.3-mysql php7.3-imap php7.3-cli php7.3-cgi \
+apt_install php8.1-fpm php8.1-opcache php8.1 php8.1-common php8.1-gd \
+php8.1-mysql php8.1-imap php8.1-cli php8.1-cgi \
 php-pear php-auth-sasl mcrypt imagemagick libruby \
-php7.3-curl php7.3-intl php7.3-pspell php7.3-recode php7.3-sqlite3 \
-php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache \
-php-imagick php-gettext php7.3-zip php7.3-mbstring \
+php8.1-curl php8.1-intl php8.1-pspell php8.1-sqlite3 \
+php8.1-tidy php8.1-xmlrpc php8.1-xsl memcached php-memcache \
+php-imagick php-gettext php8.1-zip php8.1-mbstring \
 fail2ban ntpdate python3 python3-dev python3-pip \
 curl git sudo coreutils pollinate unzip unattended-upgrades cron \
 pwgen libgmp3-dev libmysqlclient-dev libcurl4-gnutls-dev \

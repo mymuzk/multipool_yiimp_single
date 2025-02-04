@@ -22,8 +22,13 @@ if [[ ("$wireguard" == "true") ]]; then
 source $STORAGE_ROOT/yiimp/.wireguard.conf
 fi
 
-echo -e " Installing MariaDB 10.4...$COL_RESET"
-MARIADB_VERSION='10.4'
+echo -e " Installing MariaDB 10.6...$COL_RESET"
+MARIADB_VERSION='10.6'
+
+# 更新 MariaDB 仓库
+sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo add-apt-repository "deb [arch=amd64] http://mirror.one.com/mariadb/repo/10.6/ubuntu jammy main"
+
 sudo debconf-set-selections <<< "maria-db-$MARIADB_VERSION mysql-server/root_password password $DBRootPassword"
 sudo debconf-set-selections <<< "maria-db-$MARIADB_VERSION mysql-server/root_password_again password $DBRootPassword"
 apt_install mariadb-server mariadb-client

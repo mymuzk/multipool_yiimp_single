@@ -10,9 +10,11 @@ source /etc/multipool.conf
 
 clear
 echo -e " Installing WireGuard...$COL_RESET"
-sudo add-apt-repository ppa:wireguard/wireguard -y
+
+# Ubuntu 22.04 已经包含 WireGuard
 sudo apt-get update -y
-sudo apt-get install wireguard-dkms wireguard-tools -y
+sudo apt-get install wireguard -y
+
 (umask 077 && printf "[Interface]\nPrivateKey = " | sudo tee /etc/wireguard/wg0.conf > /dev/null)
 wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey | sudo tee /etc/wireguard/publickey
 

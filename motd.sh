@@ -8,7 +8,7 @@ source /etc/functions.sh # load our functions
 source /etc/multipool.conf
 
 apt_install lsb-release figlet update-motd \
-landscape-common update-notifier-common
+landscape-common update-notifier-common python3-apt
 cd $HOME/multipool/yiimp_single/ubuntu/etc/update-motd.d
 sudo rm -r /etc/update-motd.d/
 sudo mkdir /etc/update-motd.d/

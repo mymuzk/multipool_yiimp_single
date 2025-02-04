@@ -103,3 +103,6 @@ echo -e "$GREEN Web build complete...$COL_RESET"
 
 set +eu +o pipefail
 cd $HOME/multipool/yiimp_single
+
+# 更新 PHP-FPM 配置
+sudo sed -i "s/php7.3-fpm/php8.1-fpm/g" /etc/nginx/sites-available/${DomainName}.conf
